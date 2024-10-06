@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Book Notes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <div class="books-section">
+      <h1><a href="/books">My Book Notes</a></h1>
+      <div class="search-bar">
+        <form action="/books/search" method="GET">
+          <input type="text" name="query" placeholder="Search books..." value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <ul class="books-list">
+        <% books.forEach(book => { %>
+          <li class="book-item">
+            <img src="<%= book.cover %>" alt="Book Cover" class="book-cover" />
+            <div class="book-content">
+              <strong><%= book.title %></strong> by <%= book.author %>
+              
+              <div class="stars">
+                <% for (let i = 1; i <= 5; i++) { %>
+                  <% if (i <= book.rating) { %>
+                    <span class="star filled">★</span>
+                  <% } else { %>
+                    <span class="star">★</span>
+                  <% } %>
+                <% } %>
+              </div>
+              
+              <div class="book-preview">
+                <%= book.review.substring(0, 100) %>...
+                <a href="/books/<%= book.id %>" class="read-more">Read More</a>
+              </div>
+              
+              <div class="book-actions">
+                <a href="/books/<%= book.id %>" class="button view-button">View</a>
+                <form action="/books/delete/<%= book.id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="button delete-button" onclick="return confirm('Are you sure you want to delete this book?');">Delete</button>
+                </form>
+              </div>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <% if (hasPreviousPage) { %>
+          <a href="/books?page=<%= previousPage %>" class="button">Previous</a>
+        <% } %>
+
+        <div class="pagination-numbers">
+          <% for (let i = 1; i <= totalPages; i++) { %>
+            <% if (i === currentPage) { %>
+              <span class="current-page"><%= i %></span>
+            <% } else { %>
+              <a href="/books?page=<%= i %>" class="button"><%= i %></a>
+            <% } %>
+          <% } %>
+        </div>
+
+        <% if (hasNextPage) { %>
+          <a href="/books?page=<%= nextPage %>" class="button">Next</a>
+        <% } %>
+      </div>
+    </div>
+   <!-- Add a new book -->
+    <div class="add-book-section">
+      <h2>Add New Book</h2>
+      <form action="/books/add" method="POST" class="add-book-form">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" id="author" name="author" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="isbn">ISBN</label>
+          <input type="text" id="isbn" name="isbn" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Rating</label>
+          <div class="star-rating">
+            <% for(let i = 5; i >= 1; i--) { %>
+              <input type="radio" id="star<%= i %>" name="rating" value="<%= i %>" />
+              <label for="star<%= i %>">★</label>
+            <% } %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="date_read">Date Read</label>
+          <input type="date" id="date_read" name="date_read" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="review">Review</label>
+          <textarea id="review" name="review" required></textarea>
+        </div>
+        
+        <button type="submit" class="add-book-button">Add Book</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

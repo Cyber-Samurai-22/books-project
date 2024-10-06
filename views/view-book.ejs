@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= book.title %> - My Book Notes</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <a href="/books" class="back-button">← Back to Books</a>
+      <h1>Book Details</h1>
+    </header>
+
+    <main class="book-detail-container">
+      <div class="book-detail-grid">
+        <div class="book-cover-container">
+          <img src="<%= book.cover %>" alt="Cover of <%= book.title %>" class="book-cover large">
+        </div>
+        
+        <div class="book-info">
+          <h2 class="book-title"><%= book.title %></h2>
+          <h3 class="book-author">by <%= book.author %></h3>
+          
+          <div class="book-metadata">
+            <div class="stars">
+              <% for (let i = 1; i <= 5; i++) { %>
+                <span class="star <%= i <= book.rating ? 'filled' : '' %>">★</span>
+              <% } %>
+            </div>
+            <p class="date-read">Read on <%= new Date(book.date_read).toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            }) %></p>
+            <p class="isbn">ISBN: <%= book.isbn %></p>
+          </div>
+          
+          <div class="book-review">
+            <h4>My Review</h4>
+            <p><%= book.review %></p>
+          </div>
+          
+          <div class="book-actions">
+            <a href="/books/<%= book.id %>/edit" class="button edit-button">Edit Book</a>
+            <form action="/books/<%= book.id %>/delete" method="POST" class="delete-form">
+              <button type="submit" class="button delete-button" 
+                      onclick="return confirm('Are you sure you want to delete this book?')">
+                Delete Book
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

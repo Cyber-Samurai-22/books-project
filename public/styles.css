@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.main-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.books-section {
+  flex: 2;
+}
+
+.add-book-section {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar form {
+  display: flex;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* Book list */
+.books-list {
+  list-style: none;
+}
+
+.book-item {
+  display: flex;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.book-cover {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.book-content {
+  flex: 1;
+}
+
+.book-preview {
+  margin: 10px 0;
+}
+
+.book-review p {
+  white-space: pre-line;
+}
+
+.book-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Star rating */
+.stars {
+  color: #f1c40f;
+  margin: 10px 0;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ddd;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f1c40f;
+}
+
+/* Form */
+.add-book-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  height: 100px;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  line-height: 1.5;
+  height: 40px;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.view-button,
+.edit-button,
+.save-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f39c12;
+  color: white;
+}
+
+.book-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.view-button:hover,
+.edit-button:hover,
+.save-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.cancel-button:hover {
+  background-color: #d35400;
+}
+
+.read-more {
+  color: #3498db;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.add-book-section .add-book-button {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-book-section .add-book-button:hover {
+  transform: translateY(-3px);
+  background-color: #3463db;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination .button {
+  margin: 0 5px;
+}
+
+.current-page {
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .add-book-section {
+    position: static;
+    margin-bottom: 30px;
+  }
+}
