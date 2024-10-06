@@ -2,6 +2,8 @@
 
 A web application to store notes, ratings, and reviews for books you've read.
 
+![BookApp](https://github.com/user-attachments/assets/c994d5a7-bc15-4467-842b-3ed8ae684891)
+
 ## Features
 
 - Add new books
